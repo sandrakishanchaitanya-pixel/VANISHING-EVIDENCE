@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Vanishing Evidence | Admin</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================= -->
+    <!-- LOGIN SCREEN -->
+    <!-- ========================= -->
+
+    <section
+        id="loginScreen"
+        class="screen center-screen"
+    >
+
+        <div class="login-card">
+
+            <div class="brand-icon">
+                🔎
+            </div>
+
+            <p class="eyebrow">
+                CASE CONTROL
+            </p>
+
+            <h1>
+                VANISHING EVIDENCE
+            </h1>
+
+            <p class="muted">
+                Administrator Access
+            </p>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Admin Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Admin Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    ENTER CONTROL ROOM
+                </button>
+
+            </form>
+
+
+            <p
+                id="loginMessage"
+                class="message"
+            ></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- ADMIN DASHBOARD -->
+    <!-- ========================= -->
+
+    <section
+        id="dashboardScreen"
+        class="hidden"
+    >
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="eyebrow">
+                    ADMIN CONTROL ROOM
+                </p>
+
+                <h2>
+                    Vanishing Evidence
+                </h2>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <span
+                    id="serverStatus"
+                    class="status-badge"
+                >
+                    ● SERVER ONLINE
+                </span>
+
+                <button
+                    id="logoutButton"
+                    class="ghost-button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <main class="dashboard">
+
+
+            <!-- ========================= -->
+            <!-- EVENT CONTROL -->
+            <!-- ========================= -->
+
+            <section class="control-card">
+
+                <div>
+
+                    <p class="eyebrow">
+                        EVENT STATUS
+                    </p>
+
+                    <h3 id="eventStatus">
+                        Registration
+                    </h3>
+
+                    <p
+                        id="eventDescription"
+                        class="muted"
+                    >
+                        Teams can register.
+                    </p>
+
+                </div>
+
+
+                <div class="control-actions">
+
+                    <button
+                        class="primary-button"
+                        id="startButton"
+                    >
+                        START EVENT
+                    </button>
+
+                    <button
+                        class="secondary-button"
+                        id="leaderboardButton"
+                    >
+                        REVEAL LEADERBOARD
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- QUESTION MANAGER -->
+            <!-- ========================= -->
+
+            <section class="questions-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            QUESTION MANAGER
+                        </p>
+
+                        <h2>
+                            Manage Questions
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        id="addQuestionButton"
+                        class="primary-button"
+                    >
+                        + CREATE QUESTION
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="roundTabs"
+                    class="round-tabs"
+                >
+
+                    <button
+                        class="round-tab active"
+                        data-round="round1"
+                    >
+                        ROUND 1
+                        <span id="round1Count">
+                            0
+                        </span>
+                    </button>
+
+
+                    <button
+                        class="round-tab"
+                        data-round="round2"
+                    >
+                        ROUND 2
+                        <span id="round2Count">
+                            0
+                        </span>
+                    </button>
+
+
+                    <button
+                        class="round-tab"
+                        data-round="round3"
+                    >
+                        ROUND 3
+                        <span id="round3Count">
+                            0
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="questionList"
+                    class="question-list"
+                >
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            🔎
+                        </div>
+
+                        <h3>
+                            No questions yet
+                        </h3>
+
+                        <p>
+                            Create the first question
+                            for this round.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- TEAM MANAGEMENT -->
+            <!-- ========================= -->
+
+            <section class="team-management-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            TEAM CONTROL
+                        </p>
+
+                        <h2>
+                            Registered Teams
+                        </h2>
+
+                        <p class="muted">
+                            View teams, members and live scores.
+                        </p>
+
+                    </div>
+
+
+                    <div class="control-actions">
+
+                        <button
+                            id="refreshTeamsButton"
+                            class="secondary-button"
+                        >
+                            ↻ REFRESH
+                        </button>
+
+
+                        <button
+                            id="resetEventButton"
+                            class="danger-button"
+                        >
+                            ⚠ RESET EVENT
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TEAM STATISTICS -->
+
+                <div class="team-stats">
+
+                    <div class="team-stat-card">
+
+                        <span>
+                            REGISTERED TEAMS
+                        </span>
+
+                        <strong id="registeredTeamCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="team-stat-card">
+
+                        <span>
+                            TEAMS WITH SCORES
+                        </span>
+
+                        <strong id="scoredTeamCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TEAM TABLE -->
+
+                <div class="table-wrapper">
+
+                    <table class="teams-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    TEAM ID
+                                </th>
+
+                                <th>
+                                    TEAM NAME
+                                </th>
+
+                                <th>
+                                    MEMBERS
+                                </th>
+
+                                <th>
+                                    SCORE
+                                </th>
+
+                                <th>
+                                    CORRECT
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="teamsTableBody">
+
+                            <tr>
+
+                                <td colspan="5">
+                                    No teams registered yet.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- QUESTION MODAL -->
+    <!-- ========================= -->
+
+    <div
+        id="questionModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        QUESTION EDITOR
+                    </p>
+
+                    <h2 id="modalTitle">
+                        Create Question
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="closeModal"
+                    class="close-button"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="questionForm">
+
+                <input
+                    type="hidden"
+                    id="editingQuestionId"
+                >
+
+
+                <!-- ROUND -->
+
+                <div class="form-group">
+
+                    <label>
+                        Round
+                    </label>
+
+                    <select
+                        id="questionRound"
+                        required
+                    >
+
+                        <option value="round1">
+                            Round 1
+                        </option>
+
+                        <option value="round2">
+                            Round 2
+                        </option>
+
+                        <option value="round3">
+                            Round 3
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- QUESTION -->
+
+                <div class="form-group">
+
+                    <label>
+                        Question
+                    </label>
+
+                    <textarea
+                        id="questionText"
+                        placeholder="Enter the question..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="options-grid">
+
+                    <div class="form-group">
+
+                        <label>
+                            Option A
+                        </label>
+
+                        <input
+                            type="text"
+                            id="optionA"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Option B
+                        </label>
+
+                        <input
+                            type="text"
+                            id="optionB"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Option C
+                        </label>
+
+                        <input
+                            type="text"
+                            id="optionC"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Option D
+                        </label>
+
+                        <input
+                            type="text"
+                            id="optionD"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUESTION SETTINGS -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Correct Answer
+                        </label>
+
+                        <select
+                            id="correctAnswer"
+                            required
+                        >
+
+                            <option value="0">
+                                A
+                            </option>
+
+                            <option value="1">
+                                B
+                            </option>
+
+                            <option value="2">
+                                C
+                            </option>
+
+                            <option value="3">
+                                D
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Time Limit (seconds)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="timeLimit"
+                            value="30"
+                            min="5"
+                            max="120"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Base Points
+                        </label>
+
+                        <input
+                            type="number"
+                            id="points"
+                            value="100"
+                            min="1"
+                            max="1000"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- MODAL ACTIONS -->
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        id="cancelQuestion"
+                        class="secondary-button"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        SAVE QUESTION
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- SCRIPTS -->
+    <!-- ========================= -->
+
+    <script
+        src="/socket.io/socket.io.js"
+    ></script>
+
+    <script
+        src="/js/admin.js"
+    ></script>
+
+    <script
+        src="/js/quiz-admin.js"
+    ></script>
+
+    <script
+        src="/js/team-admin.js"
+    ></script>
+
+
+</body>
+
+</html>

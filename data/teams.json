@@ -1,0 +1,74 @@
+{
+  "teams": [
+    {
+      "teamId": "VE42",
+      "teamName": "madsters",
+      "members": [
+        {
+          "rollNumber": "24EU01064",
+          "name": "sugs"
+        },
+        {
+          "rollNumber": "1234",
+          "name": "naga"
+        },
+        {
+          "rollNumber": "252545",
+          "name": "bluff"
+        },
+        {
+          "rollNumber": "85526",
+          "name": "moon"
+        }
+      ],
+      "registeredAt": "2026-09-21T10:32:07.378Z",
+      "status": "registered",
+      "score": {
+        "round1": 0,
+        "round2": 0,
+        "round3": 0,
+        "total": 0
+      },
+      "statistics": {
+        "correctAnswers": 0,
+        "answeredQuestions": 0,
+        "totalAnswerTime": 0
+      }
+    },
+    {
+      "teamId": "VE01",
+      "teamName": "STARHEISTS",
+      "members": [
+        {
+          "rollNumber": "24356256",
+          "name": "BFYGFGJGJB"
+        },
+        {
+          "rollNumber": "5948484",
+          "name": "YFTJFYTFFYT"
+        },
+        {
+          "rollNumber": "415184841",
+          "name": "HGYFTFJFHV"
+        },
+        {
+          "rollNumber": "59245",
+          "name": "HGGCBBH"
+        }
+      ],
+      "registeredAt": "2026-09-21T10:45:14.246Z",
+      "status": "registered",
+      "score": {
+        "round1": 0,
+        "round2": 0,
+        "round3": 0,
+        "total": 0
+      },
+      "statistics": {
+        "correctAnswers": 0,
+        "answeredQuestions": 0,
+        "totalAnswerTime": 0
+      }
+    }
+  ]
+}

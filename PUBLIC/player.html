@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vanishing Evidence | Quiz</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+
+<div class="player-page">
+
+    <!-- HEADER -->
+    <header class="player-header">
+
+        <div>
+            <div class="player-event-title">
+                VANISHING EVIDENCE
+            </div>
+
+            <div class="player-subtitle">
+                THE DETECTIVE ERA BEGINS
+            </div>
+        </div>
+
+        <div class="player-team-info">
+            <span id="teamIdDisplay">VE--</span>
+            <span id="teamNameDisplay">Team</span>
+        </div>
+
+    </header>
+
+
+    <!-- WAITING SCREEN -->
+    <section id="waitingScreen" class="player-screen">
+
+        <div class="detective-icon">
+            🔎
+        </div>
+
+        <h1>YOU'RE IN</h1>
+
+        <p class="waiting-team">
+            <span id="waitingTeamId">VE--</span>
+        </p>
+
+        <p id="waitingMessage">
+            The detective case is about to begin...
+        </p>
+
+        <div class="waiting-loader">
+            <div></div>
+        </div>
+
+        <div class="waiting-note">
+            Stay ready. The organizer will start the round.
+        </div>
+
+    </section>
+
+
+    <!-- QUIZ SCREEN -->
+    <section id="quizScreen" class="player-screen hidden">
+
+        <div class="round-information">
+
+            <div class="round-badge" id="roundBadge">
+                ROUND 1
+            </div>
+
+            <div class="question-number">
+                Question
+                <span id="questionNumber">1</span>
+                / 10
+            </div>
+
+        </div>
+
+
+        <!-- TIMER -->
+        <div class="timer-container">
+
+            <div class="timer-label">
+                TIME REMAINING
+            </div>
+
+            <div id="timer" class="timer">
+                30
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION -->
+        <div class="question-box">
+
+            <div class="question-label">
+                CASE QUESTION
+            </div>
+
+            <h2 id="questionText">
+                Waiting for question...
+            </h2>
+
+        </div>
+
+
+        <!-- OPTIONS -->
+        <div id="optionsContainer" class="options-container">
+
+            <button class="answer-option" data-answer="A">
+                <span class="option-letter">A</span>
+                <span id="optionA">Option A</span>
+            </button>
+
+            <button class="answer-option" data-answer="B">
+                <span class="option-letter">B</span>
+                <span id="optionB">Option B</span>
+            </button>
+
+            <button class="answer-option" data-answer="C">
+                <span class="option-letter">C</span>
+                <span id="optionC">Option C</span>
+            </button>
+
+            <button class="answer-option" data-answer="D">
+                <span class="option-letter">D</span>
+                <span id="optionD">Option D</span>
+            </button>
+
+        </div>
+
+
+        <!-- ANSWER STATUS -->
+        <div id="answerStatus" class="answer-status hidden">
+            Answer submitted. Waiting for the next question...
+        </div>
+
+    </section>
+
+
+    <!-- ROUND COMPLETE -->
+    <section id="roundCompleteScreen" class="player-screen hidden">
+
+        <div class="complete-icon">
+            ✓
+        </div>
+
+        <h1>ROUND COMPLETE</h1>
+
+        <p id="roundCompleteText">
+            Your answers have been recorded.
+        </p>
+
+        <div class="round-score-card">
+
+            <div>
+                <span>ROUND SCORE</span>
+                <strong id="roundScore">0</strong>
+            </div>
+
+        </div>
+
+        <p class="waiting-next">
+            Please wait for the organizer to start the next round.
+        </p>
+
+        <div class="waiting-loader">
+            <div></div>
+        </div>
+
+    </section>
+
+
+    <!-- FINAL SCREEN -->
+    <section id="finalScreen" class="player-screen hidden">
+
+        <div class="complete-icon">
+            🏆
+        </div>
+
+        <h1>CASE CLOSED</h1>
+
+        <p>
+            All three rounds have been completed.
+        </p>
+
+        <div class="final-score-card">
+
+            <span>YOUR FINAL SCORE</span>
+
+            <strong id="finalScore">
+                0
+            </strong>
+
+        </div>
+
+        <p class="leaderboard-wait">
+            The final leaderboard will be revealed by the organizer.
+        </p>
+
+        <div id="leaderboardStatus">
+            🔒 LEADERBOARD LOCKED
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="/js/quiz.js"></script>
+
+</body>
+</html>

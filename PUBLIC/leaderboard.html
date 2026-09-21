@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Vanishing Evidence | Leaderboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+    <script src="/socket.io/socket.io.js"></script>
+
+</head>
+
+
+<body>
+
+<div class="leaderboard-page">
+
+    <header class="leaderboard-header">
+
+        <div>
+
+            <div class="player-event-title">
+                VANISHING EVIDENCE
+            </div>
+
+            <div class="player-subtitle">
+                THE DETECTIVE ERA BEGINS
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="leaderboard-main">
+
+        <div id="lockedScreen">
+
+            <div class="leaderboard-lock">
+                🔒
+            </div>
+
+            <h1>
+                LEADERBOARD LOCKED
+            </h1>
+
+            <p>
+                The final results will be revealed
+                by the organizer.
+            </p>
+
+        </div>
+
+
+        <div
+            id="leaderboardScreen"
+            class="hidden"
+        >
+
+            <div class="leaderboard-trophy">
+                🏆
+            </div>
+
+            <h1>
+                FINAL LEADERBOARD
+            </h1>
+
+            <p class="leaderboard-subtitle">
+                CASE CLOSED
+            </p>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>RANK</th>
+
+                            <th>TEAM</th>
+
+                            <th>R1</th>
+
+                            <th>R2</th>
+
+                            <th>R3</th>
+
+                            <th>TOTAL</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody
+                        id="leaderboardBody"
+                    >
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="/js/leaderboard.js"></script>
+
+</body>
+
+</html>

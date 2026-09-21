@@ -1,0 +1,19 @@
+{
+  "status": "registration",
+  "currentRound": 0,
+  "leaderboardVisible": false,
+  "rounds": {
+    "round1": {
+      "started": false,
+      "completed": false
+    },
+    "round2": {
+      "started": false,
+      "completed": false
+    },
+    "round3": {
+      "started": false,
+      "completed": false
+    }
+  }
+}

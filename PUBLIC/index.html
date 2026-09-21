@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Vanishing Evidence | Registration</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <main class="center-screen">
+
+        <div class="login-card">
+
+            <div class="brand-icon">
+                🔎
+            </div>
+
+            <p class="eyebrow">
+                INFINITO 2K26
+            </p>
+
+            <h1>
+                VANISHING EVIDENCE
+            </h1>
+
+            <p class="muted">
+                The Detective Era Begins
+            </p>
+
+
+            <form id="registrationForm">
+
+                <!-- TEAM ID -->
+
+                <div class="form-group">
+
+                    <label>
+                        Assigned Team ID
+                    </label>
+
+                    <select
+                        id="teamId"
+                        required
+                    >
+
+                        <option value="">
+                            Loading Team IDs...
+                        </option>
+
+                    </select>
+
+                    <small class="field-help">
+                        Select the Team ID assigned to your team.
+                    </small>
+
+                </div>
+
+
+                <!-- TEAM NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Team Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="teamName"
+                        placeholder="Enter your team name"
+                        maxlength="40"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- MEMBERS -->
+
+                <div class="members-heading">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            TEAM MEMBERS
+                        </p>
+
+                        <h3>
+                            Investigator Details
+                        </h3>
+
+                    </div>
+
+                    <span class="member-limit">
+                        2–4 Members
+                    </span>
+
+                </div>
+
+
+                <!-- MEMBER 1 -->
+
+                <div class="member-card">
+
+                    <div class="member-number">
+                        01
+                    </div>
+
+                    <div class="member-fields">
+
+                        <input
+                            type="text"
+                            class="roll-number"
+                            placeholder="Roll Number"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            class="member-name"
+                            placeholder="Full Name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- MEMBER 2 -->
+
+                <div class="member-card">
+
+                    <div class="member-number">
+                        02
+                    </div>
+
+                    <div class="member-fields">
+
+                        <input
+                            type="text"
+                            class="roll-number"
+                            placeholder="Roll Number"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            class="member-name"
+                            placeholder="Full Name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- MEMBER 3 -->
+
+                <div
+                    class="member-card"
+                    id="member3"
+                >
+
+                    <div class="member-number">
+                        03
+                    </div>
+
+                    <div class="member-fields">
+
+                        <input
+                            type="text"
+                            class="roll-number"
+                            placeholder="Roll Number"
+                        >
+
+                        <input
+                            type="text"
+                            class="member-name"
+                            placeholder="Full Name"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- MEMBER 4 -->
+
+                <div
+                    class="member-card"
+                    id="member4"
+                >
+
+                    <div class="member-number">
+                        04
+                    </div>
+
+                    <div class="member-fields">
+
+                        <input
+                            type="text"
+                            class="roll-number"
+                            placeholder="Roll Number"
+                        >
+
+                        <input
+                            type="text"
+                            class="member-name"
+                            placeholder="Full Name"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-button register-button"
+                >
+                    REGISTER TEAM
+                </button>
+
+
+                <p
+                    id="registrationMessage"
+                    class="message"
+                ></p>
+
+            </form>
+
+
+            <div class="registration-note">
+
+                🔒 Team ID will be locked after registration.
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="/js/player.js"></script>
+
+</body>
+
+</html>
