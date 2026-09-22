@@ -844,6 +844,18 @@ app.post(
             members
         } = req.body;
 
+                if (quizState.eventStarted) {
+
+            return res.status(403).json({
+
+                success: false,
+
+                message:
+                    "Team registration is closed. The event has already started."
+
+            });
+
+        }
 
         /* Validate Team ID */
 
@@ -1178,33 +1190,16 @@ app.get(
 ========================================================= */
 
 let quizState = {
-
-    status:
-        "registration",
-
-    currentRound:
-        0,
-
-    currentQuestionIndex:
-        -1,
-
-    currentQuestionId:
-        null,
-
-    questionStartedAt:
-        null,
-
-    questionEndsAt:
-        null,
-
-    leaderboardVisible:
-        false,
-
-    timer:
-        null
-
+    status: "registration",
+    eventStarted: false,
+    currentRound: 0,
+    currentQuestionIndex: -1,
+    currentQuestionId: null,
+    questionStartedAt: null,
+    questionEndsAt: null,
+    leaderboardVisible: false,
+    timer: null
 };
-
 
 /* =========================================================
    GET QUESTIONS FOR ROUND
@@ -1295,19 +1290,21 @@ function broadcastQuizState() {
 
     const state = {
 
-        status:
-            quizState.status,
+    status:
+        quizState.status,
 
-        currentRound:
-            quizState.currentRound,
+    eventStarted:
+        quizState.eventStarted,
 
-        currentQuestionIndex:
-            quizState.currentQuestionIndex,
+    currentRound:
+        quizState.currentRound,
 
-        leaderboardVisible:
-            quizState.leaderboardVisible
+    currentQuestionIndex:
+        quizState.currentQuestionIndex,
 
-    };
+    leaderboardVisible:
+        quizState.leaderboardVisible
+};
 
 
     if (
@@ -1420,6 +1417,8 @@ function startCurrentQuestion() {
         questions[
             quizState.currentQuestionIndex
         ];
+    answeredTeams.clear();
+    broadcastLivePresence();
 
 
     if (!question) {
@@ -1672,26 +1671,97 @@ function completeCurrentRound() {
 /* =========================================================
    QUIZ STATE API
 ========================================================= */
+/* =========================================
+   ADMIN START EVENT
+========================================= */
+
+/* =========================================
+   ADMIN START EVENT
+========================================= */
+
+app.post(
+    "/api/admin/start-event",
+    requireAdmin,
+    (req, res) => {
+
+        try {
+
+            if (quizState.eventStarted) {
+
+                return res.status(400).json({
+                    success: false,
+                    message:
+                        "Event has already started."
+                });
+
+            }
+
+            quizState.eventStarted = true;
+
+            quizState.status =
+                "registration";
+
+            console.log(
+                "EVENT STARTED BY ADMIN"
+            );
+
+            io.emit(
+                "quizState",
+                {
+                    status:
+                        quizState.status,
+
+                    eventStarted:
+                        true,
+
+                    currentRound:
+                        quizState.currentRound,
+
+                    currentQuestionIndex:
+                        quizState.currentQuestionIndex,
+
+                    currentQuestionId:
+                        quizState.currentQuestionId,
+
+                    leaderboardVisible:
+                        quizState.leaderboardVisible
+                }
+            );
+
+            res.json({
+                success: true,
+                message:
+                    "Event started successfully."
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Start event error:",
+                error
+            );
+
+            res.status(500).json({
+                success: false,
+                message:
+                    "Failed to start event."
+            });
+
+        }
+    }
+);
 
 app.get(
     "/api/quiz/state",
     (req, res) => {
 
         const response = {
-
-            status:
-                quizState.status,
-
-            currentRound:
-                quizState.currentRound,
-
-            currentQuestionIndex:
-                quizState.currentQuestionIndex,
-
-            leaderboardVisible:
-                quizState.leaderboardVisible
-
-        };
+    status: quizState.status,
+    eventStarted: quizState.eventStarted,
+    currentRound: quizState.currentRound,
+    currentQuestionIndex: quizState.currentQuestionIndex,
+    leaderboardVisible: quizState.leaderboardVisible
+};
 
 
         if (
@@ -1739,6 +1809,13 @@ app.post(
 
         const roundNumber =
             Number(req.body.round);
+        
+        if (!quizState.eventStarted) {
+            return res.status(400).json({
+                success: false,
+                message: "Please start the event first."
+            });
+        }
 
 
         if (
@@ -2156,38 +2233,17 @@ app.post(
                26+ sec   = +0
             */
 
-            if (
-                elapsedSeconds <= 5
-            ) {
-
+            if (elapsedSeconds <= 5) {
                 speedBonus = 50;
-
-            } else if (
-                elapsedSeconds <= 10
-            ) {
-
+            } else if (elapsedSeconds <= 10) {
                 speedBonus = 40;
-
-            } else if (
-                elapsedSeconds <= 15
-            ) {
-
+            } else if (elapsedSeconds <= 15) {
                 speedBonus = 30;
-
-            } else if (
-                elapsedSeconds <= 20
-            ) {
-
+            } else if (elapsedSeconds <= 20) {
                 speedBonus = 20;
-
-            } else if (
-                elapsedSeconds <= 25
-            ) {
-
+            } else if (elapsedSeconds <= 25) {
                 speedBonus = 10;
-
             } else {
-
                 speedBonus = 0;
             }
 
@@ -2450,6 +2506,11 @@ app.post(
             }
 
 
+            // CLEAR LIVE PRESENCE
+            connectedTeams.clear();
+            answeredTeams.clear();
+
+
             /*
              * Stop any active quiz timer.
              */
@@ -2471,6 +2532,9 @@ app.post(
 
             quizState.status =
                 "registration";
+
+            quizState.eventStarted =
+                false;
 
             quizState.currentRound =
                 0;
@@ -2500,13 +2564,10 @@ app.post(
                 "quizState",
                 {
                     status: "registration",
-
+                    eventStarted: false,
                     currentRound: 0,
-
                     currentQuestionIndex: -1,
-
                     currentQuestionId: null,
-
                     leaderboardVisible: false
                 }
             );
@@ -2515,6 +2576,10 @@ app.post(
             io.emit(
                 "eventReset"
             );
+
+
+            // UPDATE ADMIN LIVE PRESENCE
+            broadcastLivePresence();
 
 
             console.log(
@@ -2762,6 +2827,174 @@ app.get(
 /* =========================================================
    SOCKET.IO
 ========================================================= */
+// ==========================================
+// LIVE PLAYER PRESENCE
+// ==========================================
+
+const connectedTeams = new Map();
+const answeredTeams = new Set();
+
+
+// ------------------------------------------
+// GET LIVE PRESENCE
+// ------------------------------------------
+
+function getLivePresence() {
+
+    const teamsData = readJSON(TEAMS_FILE);
+
+    const teams = teamsData.teams || [];
+
+    const connectedTeamIds =
+        new Set(connectedTeams.keys());
+
+    let waiting = 0;
+    let playing = 0;
+    let answered = 0;
+    let completed = 0;
+    let disconnected = 0;
+
+    const activeRound =
+        quizState.status === "round1" ||
+        quizState.status === "round2" ||
+        quizState.status === "round3";
+
+
+    const liveTeams = teams.map(team => {
+
+        const teamId =
+            String(team.teamId || "").toUpperCase();
+
+        const connected =
+            connectedTeamIds.has(teamId);
+
+        const hasAnswered =
+            answeredTeams.has(teamId);
+
+        const score =
+            Number(
+                team.score?.total ??
+                team.totalScore ??
+                0
+            );
+
+        const correct =
+            Number(
+                team.statistics?.correctAnswers ??
+                team.correctAnswers ??
+                0
+            );
+
+
+        let status = "Disconnected";
+
+
+        if (quizState.status === "finished") {
+
+            status = "Completed";
+            completed++;
+
+        } else if (!connected) {
+
+            status = "Disconnected";
+            disconnected++;
+
+        } else if (activeRound && hasAnswered) {
+
+            status = "Answered";
+            answered++;
+
+        } else if (activeRound) {
+
+            status = "Playing";
+            playing++;
+
+        } else {
+
+            status = "Waiting";
+            waiting++;
+        }
+
+
+        return {
+
+            teamId,
+
+            teamName:
+                team.teamName || "-",
+
+            status,
+
+            score,
+
+            correct
+        };
+
+    });
+
+
+    return {
+
+        registered:
+            teams.length,
+
+        connected:
+            connectedTeamIds.size,
+
+        waiting,
+
+        playing,
+
+        answered,
+
+        notAnswered:
+            Math.max(
+                playing,
+                0
+            ),
+
+        completed,
+
+        disconnected,
+
+        round:
+            quizState.currentRound,
+
+        question:
+            quizState.currentQuestionIndex >= 0
+                ? quizState.currentQuestionIndex + 1
+                : 0,
+
+        totalQuestions:
+            quizState.currentRound > 0
+                ? getRoundQuestions(
+                    quizState.currentRound
+                ).length
+                : 0,
+
+        teams:
+            liveTeams
+    };
+}
+
+
+// ------------------------------------------
+// BROADCAST LIVE PRESENCE
+// ------------------------------------------
+
+function broadcastLivePresence() {
+
+    io.emit(
+        "presenceUpdate",
+        getLivePresence()
+    );
+
+}
+
+
+// ==========================================
+// SOCKET.IO
+// ==========================================
 
 io.on(
     "connection",
@@ -2773,6 +3006,124 @@ io.on(
         );
 
 
+        // ----------------------------------
+        // PLAYER IDENTIFIES TEAM
+        // ----------------------------------
+
+        socket.on(
+            "identifyTeam",
+            teamId => {
+
+                if (
+                    !teamId ||
+                    typeof teamId !== "string"
+                ) {
+                    return;
+                }
+
+
+                const cleanTeamId =
+                    teamId
+                        .trim()
+                        .toUpperCase();
+
+
+                const teamsData =
+                    readJSON(TEAMS_FILE);
+
+
+                const teamExists =
+                    (teamsData.teams || [])
+                        .some(
+                            team =>
+                                String(
+                                    team.teamId
+                                ).toUpperCase() ===
+                                cleanTeamId
+                        );
+
+
+                if (!teamExists) {
+                    return;
+                }
+
+
+                if (
+                    !connectedTeams.has(
+                        cleanTeamId
+                    )
+                ) {
+
+                    connectedTeams.set(
+                        cleanTeamId,
+                        new Set()
+                    );
+                }
+
+
+                connectedTeams
+                    .get(cleanTeamId)
+                    .add(socket.id);
+
+
+                socket.teamId =
+                    cleanTeamId;
+
+
+                console.log(
+                    `Team ${cleanTeamId} connected`
+                );
+
+
+                broadcastLivePresence();
+
+            }
+        );
+
+
+        // ----------------------------------
+        // PLAYER ANSWERED
+        // ----------------------------------
+
+        socket.on(
+            "playerAnswered",
+            teamId => {
+
+                if (!teamId) {
+                    return;
+                }
+
+
+                const cleanTeamId =
+                    String(teamId)
+                        .trim()
+                        .toUpperCase();
+
+
+                if (
+                    !connectedTeams.has(
+                        cleanTeamId
+                    )
+                ) {
+                    return;
+                }
+
+
+                answeredTeams.add(
+                    cleanTeamId
+                );
+
+
+                broadcastLivePresence();
+
+            }
+        );
+
+
+        // ----------------------------------
+        // PLAYER DISCONNECTED
+        // ----------------------------------
+
         socket.on(
             "disconnect",
             () => {
@@ -2781,15 +3132,71 @@ io.on(
                     "Client disconnected:",
                     socket.id
                 );
+
+
+                const teamId =
+                    socket.teamId;
+
+
+                if (teamId) {
+
+                    const sockets =
+                        connectedTeams.get(
+                            teamId
+                        );
+
+
+                    if (sockets) {
+
+                        sockets.delete(
+                            socket.id
+                        );
+
+
+                        if (
+                            sockets.size === 0
+                        ) {
+
+                            connectedTeams.delete(
+                                teamId
+                            );
+                        }
+                    }
+                }
+
+
+                broadcastLivePresence();
+
             }
         );
+
     }
 );
 
 
-/* =========================================================
-   SERVER STATUS
-========================================================= */
+// ------------------------------------------
+// ADMIN PRESENCE API
+// ------------------------------------------
+
+app.get(
+    "/api/admin/presence",
+    requireAdmin,
+    (req, res) => {
+
+        res.json({
+
+            success: true,
+
+            presence:
+                getLivePresence()
+
+        });
+
+    }
+);
+
+// ==========================================
+
 
 app.get(
     "/api/status",

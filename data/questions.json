@@ -11,11 +11,11 @@
         "jameson"
       ],
       "correctAnswer": 2,
-      "timeLimit": 15,
+      "timeLimit": 5,
       "points": 20,
       "published": true,
       "createdAt": "2026-09-21T10:20:05.475Z",
-      "updatedAt": "2026-09-21T10:21:08.323Z"
+      "updatedAt": "2026-09-22T12:02:15.758Z"
     },
     {
       "id": "d7d6e57a-b415-40ee-8b91-8a3e16064669",
@@ -35,7 +35,25 @@
       "updatedAt": "2026-09-21T11:06:57.612Z"
     }
   ],
-  "round2": [],
+  "round2": [
+    {
+      "id": "ab755896-524a-48ec-9664-176ecaa6f498",
+      "number": 1,
+      "question": "ergrstheth",
+      "options": [
+        "gtghtrh",
+        "rthhryj",
+        "5hyythe667hj",
+        "yth57yhjr67yj"
+      ],
+      "correctAnswer": 0,
+      "timeLimit": 10,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-22T10:28:19.480Z",
+      "updatedAt": "2026-09-22T10:28:19.480Z"
+    }
+  ],
   "round3": [
     {
       "id": "121c8a9e-8f13-4576-98c6-a689ebfb7ea6",
@@ -52,7 +70,7 @@
       "points": 100,
       "published": true,
       "createdAt": "2026-09-21T10:22:19.774Z",
-      "updatedAt": "2026-09-21T10:22:19.774Z"
+      "updatedAt": "2026-09-22T12:14:49.754Z"
     }
   ]
 }

@@ -1,62 +1,96 @@
 {
   "teams": [
     {
-      "teamId": "VE42",
-      "teamName": "madsters",
+      "teamId": "VE01",
+      "teamName": "qwerty",
       "members": [
         {
-          "rollNumber": "24EU01064",
-          "name": "sugs"
+          "rollNumber": "3453534",
+          "name": "rthghbdf"
         },
         {
-          "rollNumber": "1234",
-          "name": "naga"
+          "rollNumber": "34235",
+          "name": "fghrthrt"
         },
         {
-          "rollNumber": "252545",
-          "name": "bluff"
+          "rollNumber": "869659585",
+          "name": "grjgkfngkrnkh"
         },
         {
-          "rollNumber": "85526",
-          "name": "moon"
+          "rollNumber": "68695950",
+          "name": "mngrkgriji"
         }
       ],
-      "registeredAt": "2026-09-21T10:32:07.378Z",
+      "registeredAt": "2026-09-22T10:46:48.868Z",
       "status": "registered",
       "score": {
         "round1": 0,
-        "round2": 0,
-        "round3": 0,
-        "total": 0
+        "round2": 150,
+        "round3": 150,
+        "total": 300
       },
       "statistics": {
-        "correctAnswers": 0,
-        "answeredQuestions": 0,
-        "totalAnswerTime": 0
+        "correctAnswers": 2,
+        "answeredQuestions": 4,
+        "totalAnswerTime": 9
+      },
+      "answers": {
+        "1_c3b98139-bd78-44b2-a867-5fd822f03f2f": {
+          "answer": "A",
+          "correct": false,
+          "points": 0,
+          "speedBonus": 0,
+          "responseTime": 3,
+          "submittedAt": "2026-09-22T10:47:35.133Z"
+        },
+        "1_d7d6e57a-b415-40ee-8b91-8a3e16064669": {
+          "answer": "B",
+          "correct": false,
+          "points": 0,
+          "speedBonus": 0,
+          "responseTime": 1,
+          "submittedAt": "2026-09-22T10:47:49.461Z"
+        },
+        "2_ab755896-524a-48ec-9664-176ecaa6f498": {
+          "answer": "A",
+          "correct": true,
+          "points": 150,
+          "speedBonus": 50,
+          "responseTime": 3,
+          "submittedAt": "2026-09-22T10:49:03.550Z"
+        },
+        "3_121c8a9e-8f13-4576-98c6-a689ebfb7ea6": {
+          "answer": "A",
+          "correct": true,
+          "points": 150,
+          "speedBonus": 50,
+          "responseTime": 2,
+          "submittedAt": "2026-09-22T10:49:32.780Z"
+        }
       }
     },
     {
-      "teamId": "VE01",
-      "teamName": "STARHEISTS",
+      "teamId": "VE02",
+      "teamName": "lamejokes",
       "members": [
         {
-          "rollNumber": "24356256",
-          "name": "BFYGFGJGJB"
+          "rollNumber": "55545",
+          "name": "lkjjnjj"
         },
         {
-          "rollNumber": "5948484",
-          "name": "YFTJFYTFFYT"
+          "rollNumber": "4556254",
+          "name": "bhghfh"
         },
         {
-          "rollNumber": "415184841",
-          "name": "HGYFTFJFHV"
+          "rollNumber": "98455",
+          "name": "bhfyfttyfh"
         },
         {
-          "rollNumber": "59245",
-          "name": "HGGCBBH"
+          "rollNumber": "88888",
+          "name": "hvfvghv"
         }
       ],
-      "registeredAt": "2026-09-21T10:45:14.246Z",
+      "registeredAt": "2026-09-22T11:01:05.125Z",
       "status": "registered",
       "score": {
         "round1": 0,
@@ -68,6 +102,145 @@
         "correctAnswers": 0,
         "answeredQuestions": 0,
         "totalAnswerTime": 0
+      },
+      "answers": {}
+    },
+    {
+      "teamId": "VE04",
+      "teamName": "iykyk",
+      "members": [
+        {
+          "rollNumber": "53485875",
+          "name": "ekrghjesrgh"
+        },
+        {
+          "rollNumber": "49748597",
+          "name": "hfjesrfue"
+        },
+        {
+          "rollNumber": "83475857",
+          "name": "yruehfjeh"
+        },
+        {
+          "rollNumber": "3478575792",
+          "name": "knferkngkng"
+        }
+      ],
+      "registeredAt": "2026-09-22T11:57:56.151Z",
+      "status": "registered",
+      "score": {
+        "round1": 0,
+        "round2": 150,
+        "round3": 150,
+        "total": 300
+      },
+      "statistics": {
+        "correctAnswers": 2,
+        "answeredQuestions": 4,
+        "totalAnswerTime": 11
+      },
+      "answers": {
+        "1_c3b98139-bd78-44b2-a867-5fd822f03f2f": {
+          "answer": "A",
+          "correct": false,
+          "points": 0,
+          "speedBonus": 0,
+          "responseTime": 3,
+          "submittedAt": "2026-09-22T11:58:24.937Z"
+        },
+        "1_d7d6e57a-b415-40ee-8b91-8a3e16064669": {
+          "answer": "C",
+          "correct": false,
+          "points": 0,
+          "speedBonus": 0,
+          "responseTime": 1,
+          "submittedAt": "2026-09-22T11:58:39.292Z"
+        },
+        "2_ab755896-524a-48ec-9664-176ecaa6f498": {
+          "answer": "A",
+          "correct": true,
+          "points": 150,
+          "speedBonus": 50,
+          "responseTime": 3,
+          "submittedAt": "2026-09-22T11:59:37.998Z"
+        },
+        "3_121c8a9e-8f13-4576-98c6-a689ebfb7ea6": {
+          "answer": "A",
+          "correct": true,
+          "points": 150,
+          "speedBonus": 50,
+          "responseTime": 4,
+          "submittedAt": "2026-09-22T11:59:56.062Z"
+        }
+      }
+    },
+    {
+      "teamId": "VE03",
+      "teamName": "jjjjjjjjjjjjjj",
+      "members": [
+        {
+          "rollNumber": "1111111111",
+          "name": "aaaaaaaaa"
+        },
+        {
+          "rollNumber": "222222222",
+          "name": "bbbbb"
+        },
+        {
+          "rollNumber": "33333",
+          "name": "cccccccc"
+        },
+        {
+          "rollNumber": "444444444",
+          "name": "dddddddddd"
+        }
+      ],
+      "registeredAt": "2026-09-22T12:12:51.233Z",
+      "status": "registered",
+      "score": {
+        "round1": 0,
+        "round2": 150,
+        "round3": 130,
+        "total": 280
+      },
+      "statistics": {
+        "correctAnswers": 2,
+        "answeredQuestions": 4,
+        "totalAnswerTime": 21
+      },
+      "answers": {
+        "1_c3b98139-bd78-44b2-a867-5fd822f03f2f": {
+          "answer": "A",
+          "correct": false,
+          "points": 0,
+          "speedBonus": 0,
+          "responseTime": 3,
+          "submittedAt": "2026-09-22T12:14:19.155Z"
+        },
+        "1_d7d6e57a-b415-40ee-8b91-8a3e16064669": {
+          "answer": "C",
+          "correct": false,
+          "points": 0,
+          "speedBonus": 0,
+          "responseTime": 1,
+          "submittedAt": "2026-09-22T12:14:23.662Z"
+        },
+        "2_ab755896-524a-48ec-9664-176ecaa6f498": {
+          "answer": "A",
+          "correct": true,
+          "points": 150,
+          "speedBonus": 50,
+          "responseTime": 3,
+          "submittedAt": "2026-09-22T12:15:01.854Z"
+        },
+        "3_121c8a9e-8f13-4576-98c6-a689ebfb7ea6": {
+          "answer": "A",
+          "correct": true,
+          "points": 130,
+          "speedBonus": 30,
+          "responseTime": 14,
+          "submittedAt": "2026-09-22T12:15:28.459Z"
+        }
       }
     }
   ]

@@ -8,9 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
 
         createQuizControlPanel();
-
         createLeaderboardButton();
-
+        setupStartEventButton();
         updateQuizStatus();
 
         setInterval(
@@ -24,13 +23,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================================
+   GET ADMIN TOKEN
+========================================= */
+
+function getAdminToken() {
+
+    return localStorage.getItem(
+        "ve_admin_token"
+    );
+
+}
+
+
+/* =========================================
    CREATE QUIZ CONTROL PANEL
 ========================================= */
 
 function createQuizControlPanel() {
 
     if (
-        document.getElementById("quizControlPanel")
+        document.getElementById(
+            "quizControlPanel"
+        )
     ) {
         return;
     }
@@ -74,8 +88,11 @@ function createQuizControlPanel() {
                 class="quiz-round-button"
                 data-round="1"
             >
+
                 <span>ROUND 1</span>
+
                 <small>START</small>
+
             </button>
 
 
@@ -83,8 +100,11 @@ function createQuizControlPanel() {
                 class="quiz-round-button"
                 data-round="2"
             >
+
                 <span>ROUND 2</span>
+
                 <small>START</small>
+
             </button>
 
 
@@ -92,8 +112,11 @@ function createQuizControlPanel() {
                 class="quiz-round-button"
                 data-round="3"
             >
+
                 <span>ROUND 3</span>
+
                 <small>START</small>
+
             </button>
 
         </div>
@@ -110,7 +133,9 @@ function createQuizControlPanel() {
 
 
     const dashboard =
-        document.querySelector(".dashboard");
+        document.querySelector(
+            ".dashboard"
+        );
 
 
     if (dashboard) {
@@ -125,7 +150,9 @@ function createQuizControlPanel() {
 
 
     document
-        .querySelectorAll(".quiz-round-button")
+        .querySelectorAll(
+            ".quiz-round-button"
+        )
         .forEach(button => {
 
             button.addEventListener(
@@ -148,14 +175,60 @@ function createQuizControlPanel() {
 
 
 /* =========================================
-   START ROUND
+   START EVENT BUTTON
 ========================================= */
 
-async function startRound(round) {
+function setupStartEventButton() {
+
+    const button =
+        document.getElementById(
+            "startButton"
+        );
+
+
+    if (!button) {
+
+        console.warn(
+            "START EVENT button not found."
+        );
+
+        return;
+
+    }
+
+
+    /* Prevent duplicate listeners */
+
+    if (
+        button.dataset.startEventReady ===
+        "true"
+    ) {
+
+        return;
+
+    }
+
+
+    button.dataset.startEventReady =
+        "true";
+
+
+    button.addEventListener(
+        "click",
+        startEvent
+    );
+
+}
+
+
+/* =========================================
+   START EVENT
+========================================= */
+
+async function startEvent() {
 
     const adminToken =
-        localStorage.getItem("adminToken") ||
-        localStorage.getItem("admin_token");
+        getAdminToken();
 
 
     if (!adminToken) {
@@ -165,6 +238,169 @@ async function startRound(round) {
         );
 
         return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Start the event?\n\n" +
+            "Team registration will close and " +
+            "the organizer can start Round 1."
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "startButton"
+        );
+
+
+    if (button) {
+
+        button.disabled = true;
+
+        button.textContent =
+            "STARTING...";
+
+    }
+
+
+    setControlMessage(
+        "Starting event..."
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/admin/start-event",
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "x-admin-token":
+                            adminToken
+
+                    }
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            if (button) {
+
+                button.disabled = false;
+
+                button.textContent =
+                    "START EVENT";
+
+            }
+
+
+            alert(
+                result.message ||
+                "Could not start event."
+            );
+
+            setControlMessage(
+                result.message ||
+                "Could not start event."
+            );
+
+            return;
+
+        }
+
+
+        if (button) {
+
+            button.disabled = true;
+
+            button.textContent =
+                "EVENT STARTED";
+
+        }
+
+
+        setControlMessage(
+            "Event started successfully. " +
+            "You can now start Round 1."
+        );
+
+
+        updateQuizStatus();
+
+
+    } catch (error) {
+
+        console.error(
+            "Start event error:",
+            error
+        );
+
+
+        if (button) {
+
+            button.disabled = false;
+
+            button.textContent =
+                "START EVENT";
+
+        }
+
+
+        alert(
+            "Unable to connect to the server."
+        );
+
+
+        setControlMessage(
+            "Unable to connect to the server."
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   START ROUND
+========================================= */
+
+async function startRound(round) {
+
+    const adminToken =
+        getAdminToken();
+
+
+    if (!adminToken) {
+
+        alert(
+            "Admin session not found. Please login again."
+        );
+
+        return;
+
     }
 
 
@@ -176,7 +412,9 @@ async function startRound(round) {
 
 
     if (!confirmed) {
+
         return;
+
     }
 
 
@@ -224,12 +462,15 @@ async function startRound(round) {
                 "Could not start round."
             );
 
+
             alert(
                 result.message ||
                 "Could not start round."
             );
 
+
             return;
+
         }
 
 
@@ -240,6 +481,7 @@ async function startRound(round) {
 
         updateQuizStatus();
 
+
     } catch (error) {
 
         console.error(
@@ -249,6 +491,11 @@ async function startRound(round) {
 
 
         setControlMessage(
+            "Unable to connect to the server."
+        );
+
+
+        alert(
             "Unable to connect to the server."
         );
 
@@ -275,7 +522,15 @@ async function updateQuizStatus() {
             await response.json();
 
 
-        updateStatusDisplay(state);
+        updateStatusDisplay(
+            state
+        );
+
+
+        updateStartEventButton(
+            state
+        );
+
 
     } catch (error) {
 
@@ -290,10 +545,87 @@ async function updateQuizStatus() {
 
 
 /* =========================================
+   UPDATE START EVENT BUTTON
+========================================= */
+
+function updateStartEventButton(
+    state
+) {
+
+    const button =
+        document.getElementById(
+            "startButton"
+        );
+
+
+    if (!button) {
+
+        return;
+
+    }
+
+
+    /*
+       If the server provides eventStarted,
+       use it.
+    */
+
+    if (
+        state.eventStarted === true
+    ) {
+
+        button.disabled = true;
+
+        button.textContent =
+            "EVENT STARTED";
+
+        return;
+
+    }
+
+
+    /*
+       If the quiz is already running,
+       event has effectively started.
+    */
+
+    if (
+        state.status === "round1" ||
+        state.status === "round2" ||
+        state.status === "round3" ||
+        state.status === "waiting" ||
+        state.status === "finished"
+    ) {
+
+        button.disabled = true;
+
+        button.textContent =
+            "EVENT STARTED";
+
+        return;
+
+    }
+
+
+    /*
+       Registration state
+    */
+
+    button.disabled = false;
+
+    button.textContent =
+        "START EVENT";
+
+}
+
+
+/* =========================================
    UPDATE STATUS DISPLAY
 ========================================= */
 
-function updateStatusDisplay(state) {
+function updateStatusDisplay(
+    state
+) {
 
     const statusElement =
         document.getElementById(
@@ -302,7 +634,9 @@ function updateStatusDisplay(state) {
 
 
     if (!statusElement) {
+
         return;
+
     }
 
 
@@ -314,8 +648,19 @@ function updateStatusDisplay(state) {
         state.status === "registration"
     ) {
 
-        text =
-            "REGISTRATION";
+        if (
+            state.eventStarted === true
+        ) {
+
+            text =
+                "EVENT STARTED";
+
+        } else {
+
+            text =
+                "REGISTRATION";
+
+        }
 
     } else if (
         state.status === "waiting"
@@ -351,6 +696,7 @@ function updateStatusDisplay(state) {
 
         text =
             "🏁 EVENT FINISHED";
+
     }
 
 
@@ -377,6 +723,12 @@ function updateStatusDisplay(state) {
 
     updateRoundButtons(
         state.currentRound,
+        state.status,
+        state.eventStarted
+    );
+
+
+    updateLeaderboardButton(
         state.status
     );
 
@@ -389,7 +741,8 @@ function updateStatusDisplay(state) {
 
 function updateRoundButtons(
     currentRound,
-    status
+    status,
+    eventStarted
 ) {
 
     const buttons =
@@ -407,95 +760,185 @@ function updateRoundButtons(
 
 
         const small =
-            button.querySelector("small");
+            button.querySelector(
+                "small"
+            );
 
 
-        button.disabled = false;
+        button.disabled =
+            false;
 
-        button.classList.remove("active");
+
+        button.classList.remove(
+            "active"
+        );
 
 
         if (small) {
-            small.textContent = "START";
+
+            small.textContent =
+                "START";
+
         }
 
 
-        /* Currently live */
+        /*
+           Currently live
+        */
 
         if (
             status === `round${round}`
         ) {
 
-            button.disabled = true;
+            button.disabled =
+                true;
 
-            button.classList.add("active");
+
+            button.classList.add(
+                "active"
+            );
+
 
             if (small) {
-                small.textContent = "LIVE";
+
+                small.textContent =
+                    "LIVE";
+
             }
 
+
             return;
+
         }
 
 
-        /* Registration */
+        /*
+           Registration
+        */
 
         if (
             status === "registration"
         ) {
 
-            if (round !== 1) {
-                button.disabled = true;
+            /*
+               Round 1 becomes available
+               after START EVENT.
+            */
+
+            if (
+                round === 1 &&
+                eventStarted === true
+            ) {
+
+                button.disabled =
+                    false;
+
+            } else {
+
+                button.disabled =
+                    true;
+
             }
 
+
             return;
+
         }
 
 
-        /* Waiting after a completed round */
+        /*
+           Waiting after completed round
+        */
 
         if (
             status === "waiting"
         ) {
 
-            if (round <= currentRound) {
+            if (
+                round <= currentRound
+            ) {
 
-                button.disabled = true;
+                button.disabled =
+                    true;
+
 
                 if (small) {
-                    small.textContent = "COMPLETED";
+
+                    small.textContent =
+                        "COMPLETED";
+
                 }
 
             } else if (
-                round === currentRound + 1
+                round ===
+                currentRound + 1
             ) {
 
-                button.disabled = false;
+                button.disabled =
+                    false;
 
             } else {
 
-                button.disabled = true;
+                button.disabled =
+                    true;
+
             }
 
+
             return;
+
         }
 
 
-        /* Finished */
+        /*
+           Finished
+        */
 
         if (
             status === "finished"
         ) {
 
-            button.disabled = true;
+            button.disabled =
+                true;
+
 
             if (small) {
-                small.textContent = "COMPLETED";
+
+                small.textContent =
+                    "COMPLETED";
+
             }
 
         }
 
     });
+
+}
+
+
+/* =========================================
+   CONTROL MESSAGE
+========================================= */
+
+function setControlMessage(
+    message
+) {
+
+    const element =
+        document.getElementById(
+            "quizControlMessage"
+        );
+
+
+    if (!element) {
+
+        return;
+
+    }
+
+
+    element.textContent =
+        message;
 
 }
 
@@ -511,12 +954,16 @@ function createLeaderboardButton() {
             "revealLeaderboardButton"
         )
     ) {
+
         return;
+
     }
 
 
     const button =
-        document.createElement("button");
+        document.createElement(
+            "button"
+        );
 
 
     button.id =
@@ -557,7 +1004,9 @@ function createLeaderboardButton() {
 
     if (panel) {
 
-        panel.appendChild(button);
+        panel.appendChild(
+            button
+        );
 
     }
 
@@ -568,7 +1017,9 @@ function createLeaderboardButton() {
    UPDATE LEADERBOARD BUTTON
 ========================================= */
 
-function updateLeaderboardButton(status) {
+function updateLeaderboardButton(
+    status
+) {
 
     const button =
         document.getElementById(
@@ -577,7 +1028,9 @@ function updateLeaderboardButton(status) {
 
 
     if (!button) {
+
         return;
+
     }
 
 
@@ -585,14 +1038,18 @@ function updateLeaderboardButton(status) {
         status === "finished"
     ) {
 
-        button.disabled = false;
+        button.disabled =
+            false;
+
 
         button.textContent =
             "🏆 REVEAL LEADERBOARD";
 
     } else {
 
-        button.disabled = true;
+        button.disabled =
+            true;
+
 
         button.textContent =
             "🔒 LEADERBOARD LOCKED";
@@ -609,8 +1066,7 @@ function updateLeaderboardButton(status) {
 async function revealLeaderboard() {
 
     const token =
-        localStorage.getItem("adminToken") ||
-        localStorage.getItem("admin_token");
+        getAdminToken();
 
 
     if (!token) {
@@ -620,6 +1076,7 @@ async function revealLeaderboard() {
         );
 
         return;
+
     }
 
 
@@ -630,7 +1087,9 @@ async function revealLeaderboard() {
 
 
     if (!confirmed) {
+
         return;
+
     }
 
 
@@ -644,6 +1103,9 @@ async function revealLeaderboard() {
                     method: "POST",
 
                     headers: {
+
+                        "Content-Type":
+                            "application/json",
 
                         "x-admin-token":
                             token
@@ -665,7 +1127,9 @@ async function revealLeaderboard() {
                 "Unable to reveal leaderboard."
             );
 
+
             return;
+
         }
 
 
@@ -676,9 +1140,14 @@ async function revealLeaderboard() {
 
         buttonRevealed();
 
+
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Reveal leaderboard error:",
+            error
+        );
+
 
         alert(
             "Server connection error."
@@ -689,6 +1158,10 @@ async function revealLeaderboard() {
 }
 
 
+/* =========================================
+   LEADERBOARD REVEALED
+========================================= */
+
 function buttonRevealed() {
 
     const button =
@@ -698,11 +1171,15 @@ function buttonRevealed() {
 
 
     if (!button) {
+
         return;
+
     }
 
 
-    button.disabled = true;
+    button.disabled =
+        true;
+
 
     button.textContent =
         "🏆 LEADERBOARD REVEALED";
@@ -723,6 +1200,30 @@ if (
 
 
     adminSocket.on(
+        "connect",
+        () => {
+
+            console.log(
+                "Admin Socket.IO connected."
+            );
+
+        }
+    );
+
+
+    adminSocket.on(
+        "disconnect",
+        () => {
+
+            console.log(
+                "Admin Socket.IO disconnected."
+            );
+
+        }
+    );
+
+
+    adminSocket.on(
         "quizState",
         state => {
 
@@ -730,9 +1231,11 @@ if (
                 state
             );
 
-            updateLeaderboardButton(
-                state.status
+
+            updateStartEventButton(
+                state
             );
+
 
         }
     );
@@ -773,6 +1276,7 @@ if (
                 `Waiting for the organizer.`
             );
 
+
             updateQuizStatus();
 
         }
@@ -784,12 +1288,15 @@ if (
         () => {
 
             setControlMessage(
-                "All 3 rounds completed. Leaderboard is ready."
+                "All 3 rounds completed. " +
+                "Leaderboard is ready."
             );
+
 
             updateLeaderboardButton(
                 "finished"
             );
+
 
             updateQuizStatus();
 
@@ -802,6 +1309,38 @@ if (
         () => {
 
             buttonRevealed();
+
+        }
+    );
+
+
+    adminSocket.on(
+        "eventReset",
+        () => {
+
+            const button =
+                document.getElementById(
+                    "startButton"
+                );
+
+
+            if (button) {
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "START EVENT";
+
+            }
+
+
+            setControlMessage(
+                "Event reset. Waiting for registration."
+            );
+
+
+            updateQuizStatus();
 
         }
     );
