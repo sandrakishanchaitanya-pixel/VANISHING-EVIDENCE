@@ -3,74 +3,414 @@
     {
       "id": "c3b98139-bd78-44b2-a867-5fd822f03f2f",
       "number": 1,
-      "question": "who is the black sheep?",
-      "options": [
-        "mark",
-        "vitch",
-        "brew",
-        "jameson"
-      ],
-      "correctAnswer": 2,
-      "timeLimit": 5,
-      "points": 20,
+      "question": "How many people are appearing?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5"
+      },
+      "correctAnswer": 1,
+      "timeLimit": 30,
+      "points": 100,
       "published": true,
-      "createdAt": "2026-09-21T10:20:05.475Z",
-      "updatedAt": "2026-09-22T12:02:15.758Z"
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
     },
     {
       "id": "d7d6e57a-b415-40ee-8b91-8a3e16064669",
       "number": 2,
-      "question": "Which object is commonly associated with a detective?",
-      "options": [
-        "mark",
-        "fwefse",
-        "efewfer",
-        "weffrfer"
-      ],
-      "correctAnswer": 3,
+      "question": "What was the color inside the case?",
+      "options": {
+        "A": "Blue",
+        "B": "Green",
+        "C": "Red",
+        "D": "Yellow"
+      },
+      "correctAnswer": 2,
       "timeLimit": 30,
       "points": 100,
       "published": true,
-      "createdAt": "2026-09-21T11:06:57.612Z",
-      "updatedAt": "2026-09-21T11:06:57.612Z"
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q3",
+      "number": 3,
+      "question": "What was the number on the jar for the detective?",
+      "options": {
+        "A": "60",
+        "B": "30",
+        "C": "20",
+        "D": "40"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q4",
+      "number": 4,
+      "question": "What color was the knife handle?",
+      "options": {
+        "A": "Red",
+        "B": "Black",
+        "C": "Brown",
+        "D": "Blue"
+      },
+      "correctAnswer": 1,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q5",
+      "number": 5,
+      "question": "What number is on the evidence tag?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "6"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q6",
+      "number": 6,
+      "question": "How many pens/pencils were on the floor?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4"
+      },
+      "correctAnswer": 1,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q7",
+      "number": 7,
+      "question": "What number was next to the gun?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4"
+      },
+      "correctAnswer": 1,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q8",
+      "number": 8,
+      "question": "What color is the gambling cup?",
+      "options": {
+        "A": "Black",
+        "B": "Red",
+        "C": "Blue",
+        "D": "White"
+      },
+      "correctAnswer": 1,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q9",
+      "number": 9,
+      "question": "What number is associated with the wine glass?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "6"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q10",
+      "number": 10,
+      "question": "What color is the victim's middle fingernail?",
+      "options": {
+        "A": "Blue",
+        "B": "Green",
+        "C": "Red",
+        "D": "Black"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q11",
+      "number": 11,
+      "question": "What is in the victim's hand?",
+      "options": {
+        "A": "Knife",
+        "B": "Hammer",
+        "C": "Bottle",
+        "D": "Key"
+      },
+      "correctAnswer": 1,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q12",
+      "number": 12,
+      "question": "What color is the victim's sweater?",
+      "options": {
+        "A": "Red",
+        "B": "Blue",
+        "C": "Green",
+        "D": "Black"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q13",
+      "number": 13,
+      "question": "Which type of knife is shown in the photo?",
+      "options": {
+        "A": "Kitchen knife",
+        "B": "Pocket knife",
+        "C": "Hunting knife",
+        "D": "Butter knife"
+      },
+      "correctAnswer": 1,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q14",
+      "number": 14,
+      "question": "How many chips are there?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "6"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q15",
+      "number": 15,
+      "question": "How many shell casings are there?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q16",
+      "number": 16,
+      "question": "What color is the victim's shoe?",
+      "options": {
+        "A": "Black",
+        "B": "Brown",
+        "C": "White",
+        "D": "Grey"
+      },
+      "correctAnswer": 1,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q17",
+      "number": 17,
+      "question": "What time was shown on the clock?",
+      "options": {
+        "A": "1:38",
+        "B": "1:32",
+        "C": "1:35",
+        "D": "1:30"
+      },
+      "correctAnswer": 1,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r1-q18",
+      "number": 18,
+      "question": "What color are the victim's pants?",
+      "options": {
+        "A": "Blue",
+        "B": "Grey",
+        "C": "Black",
+        "D": "Red"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
     }
   ],
   "round2": [
     {
-      "id": "ab755896-524a-48ec-9664-176ecaa6f498",
+      "id": "r2-q1",
       "number": 1,
-      "question": "ergrstheth",
-      "options": [
-        "gtghtrh",
-        "rthhryj",
-        "5hyythe667hj",
-        "yth57yhjr67yj"
-      ],
-      "correctAnswer": 0,
-      "timeLimit": 10,
-      "points": 100,
-      "published": true,
-      "createdAt": "2026-09-22T10:28:19.480Z",
-      "updatedAt": "2026-09-22T10:28:19.480Z"
-    }
-  ],
-  "round3": [
-    {
-      "id": "121c8a9e-8f13-4576-98c6-a689ebfb7ea6",
-      "number": 1,
-      "question": "who was assassinated?",
-      "options": [
-        "mike",
-        "john",
-        "grame",
-        "howel"
-      ],
+      "question": "Who killed Jenny?",
+      "options": {
+        "A": "Ray (ex-boyfriend)",
+        "B": "Kathy Leamons (mean girl)",
+        "C": "Francine (twin sister)",
+        "D": "Neighbor"
+      },
       "correctAnswer": 0,
       "timeLimit": 30,
       "points": 100,
       "published": true,
-      "createdAt": "2026-09-21T10:22:19.774Z",
-      "updatedAt": "2026-09-22T12:14:49.754Z"
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r2-q2",
+      "number": 2,
+      "question": "Who stole the chalice?",
+      "options": {
+        "A": "Marco Bissel (intern)",
+        "B": "Theo Wurton (president of Explorer's Club)",
+        "C": "Alexa Harrington",
+        "D": "None of the above"
+      },
+      "correctAnswer": 1,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r2-q3",
+      "number": 3,
+      "question": "Who killed Anthony Rollins?",
+      "options": {
+        "A": "William Tussel (witness)",
+        "B": "Dierdre Rollitz (victim's wife)",
+        "C": "Marlene Kaye (artist's model)",
+        "D": "Pierre Leroy (abstract artist)"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r2-q4",
+      "number": 4,
+      "question": "Who killed the CEO?",
+      "options": {
+        "A": "Paul",
+        "B": "Nina",
+        "C": "Omar",
+        "D": "None of the above"
+      },
+      "correctAnswer": 0,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    },
+    {
+      "id": "r2-q5",
+      "number": 5,
+      "question": "Who has done the cottage murder?",
+      "options": {
+        "A": "Gardener",
+        "B": "Neighbor",
+        "C": "Housekeeper",
+        "D": "None of the above"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
+    }
+  ],
+  "round3": [
+    {
+      "id": "r3-q1",
+      "number": 1,
+      "question": "Who murdered the victim, Karan Malhotra?",
+      "options": {
+        "A": "Rhea Sharma",
+        "B": "Arjun Mehta",
+        "C": "Meera Nair",
+        "D": "Kabir Malhotra"
+      },
+      "correctAnswer": 2,
+      "timeLimit": 30,
+      "points": 100,
+      "published": true,
+      "createdAt": "2026-09-23T00:00:00.000Z",
+      "updatedAt": "2026-09-23T00:00:00.000Z"
     }
   ]
 }

@@ -1241,43 +1241,47 @@ function getSafeQuestion(
     roundNumber,
     index
 ) {
+    const rawOptions = question.options || {};
+
+    let options;
+
+    // Support both old array format and current object format
+    if (Array.isArray(rawOptions)) {
+        options = {
+            A: rawOptions[0] || "",
+            B: rawOptions[1] || "",
+            C: rawOptions[2] || "",
+            D: rawOptions[3] || ""
+        };
+    } else {
+        options = {
+            A: rawOptions.A || rawOptions.a || "",
+            B: rawOptions.B || rawOptions.b || "",
+            C: rawOptions.C || rawOptions.c || "",
+            D: rawOptions.D || rawOptions.d || ""
+        };
+    }
+
+    console.log("Sending question to player:");
+    console.log("Question:", question.question);
+    console.log("Options:", options);
 
     return {
+        id: question.id,
 
-        id:
-            question.id,
+        round: roundNumber,
 
-        round:
-            roundNumber,
+        questionNumber: index + 1,
 
-        questionNumber:
-            index + 1,
+        question: question.question,
 
-        question:
-            question.question,
-
-        options: {
-
-            A:
-                question.options[0],
-
-            B:
-                question.options[1],
-
-            C:
-                question.options[2],
-
-            D:
-                question.options[3]
-
-        },
+        options: options,
 
         timeLimit:
             Number(question.timeLimit) || 30,
 
         startedAt:
             quizState.questionStartedAt
-
     };
 }
 
